@@ -1,0 +1,45 @@
+import fetch from "cross-fetch";
+import * as config from "./config.json";
+
+export interface Params {
+  page: number;
+  pageSize: number;
+}
+
+export default class WebRequest {
+  
+  public static makeRequest(urlSegment: string, pathParams: string, queryParam: Params) {
+    
+    const ContentType = "application/json";
+    const Accept = "application/json; text/javascript";
+
+    const requestHeaders = {
+      ContentType,
+      Accept
+    };
+
+    const query = WebRequest.getParams(queryParam);
+    const url = `${config.urlBase}/${urlSegment}${pathParams}${query}`;
+
+    return fetch(url, {
+      method: "GET",
+      headers: requestHeaders
+    });
+  }
+
+  private static getParams(params: Params) {
+    let queryParam = "";
+
+    for (const key in params) {
+      if (params.hasOwnProperty(key)) {
+        const value = (params as any)[key];
+        if (queryParam.length > 0) queryParam += "&";
+        queryParam += `${key}=${value}`;
+      }
+    }
+
+    if (queryParam.length > 0) queryParam = `?${queryParam}`;
+
+    return queryParam;
+  }
+}

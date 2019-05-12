@@ -1,0 +1,77 @@
+$maleColor: darkturquoise;
+$femaleColor: cornsilk;
+$houseColor: coral;
+
+.body {
+  min-width: 720px;
+  height: calc(100vh - 34px - 24px);
+  overflow-y: auto;
+}
+
+%bars {
+  background-color: #282c34;
+  min-width: 700px;
+  display: flex;
+  color: white;  
+}
+
+.header {
+  @extend %bars;
+  height: 34px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.hints {
+  @extend %bars;
+  height: 24px;
+  flex-direction: row;
+  font-size: 15px;
+  justify-content: space-around;
+}
+
+.hint {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+%colorBox {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+.colorBoxMale {
+  @extend %colorBox;
+  background-color: $maleColor;
+}
+
+.colorBoxFemale {
+  @extend %colorBox;
+  background-color: $femaleColor;
+}
+
+.colorBoxHouse {
+  @extend %colorBox;
+  background-color: $houseColor;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.container {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.btn {
+  position: fixed;
+  top: 3px;
+  left: 3px;
+}
