@@ -1,13 +1,13 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-export default class NotFound extends React.PureComponent {
-  render() {
-    return (
-      <div>
-        <div>Invalid address. Porobably you need this link:</div>
-        <Link to={"/"}>Home page - Characters list</Link>
-      </div>
-    );
-  }
-}
+const NotFound: React.FC = () => {
+  return (
+    <div>
+      <div>Invalid address. Probably you need this link:</div>
+      <Link to={'/'}>Home page - Characters list</Link>
+    </div>
+  );
+};
+
+export default NotFound;
