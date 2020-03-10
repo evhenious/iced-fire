@@ -9,7 +9,7 @@ import { RouteComponentProps } from "react-router";
 import { Params } from "../../util/WebRequest";
 import { Button } from "../NavButton";
 
-interface Props extends DispatchableProps {
+interface Props extends DispatchableProps, RouteComponentProps {
   characters: Char[];
   pages: string[];
   init: boolean;
@@ -26,7 +26,7 @@ export default class CharactersPage extends DataLoader<Props> {
   constructor(props: Props) {
     super(props);
 
-    const dataSplit = ((props as any) as RouteComponentProps).location.pathname.split("/");
+    const dataSplit = props.location.pathname.split("/");
     this.urlSegment = dataSplit[1];
     this.entityID = dataSplit[2];
 
@@ -84,7 +84,8 @@ export default class CharactersPage extends DataLoader<Props> {
       this.params.page = 0;
       this.loadMore();
     }
-    ClickHandler.goHomeClick((this.props as any) as RouteComponentProps);
+
+    this.props.history.push("/")
   };
 
   render() {

@@ -3,7 +3,7 @@ import { Char } from "./Model";
 import css from "../style/character.module.scss";
 import { House } from "../House/Model";
 import { withRouter, RouteComponentProps } from "react-router";
-import ClickHandler from "../../util/ClickHandler";
+import { getTargetPath } from "../../util/ClickHandler";
 
 export type Props = Char & {
   houses?: House[];
@@ -17,7 +17,8 @@ class CharacterCard extends React.PureComponent<Props, {}> {
           key={`${this.props.name}-houses-${index}`}
           className={css.link}
           onClick={() => {
-            ClickHandler.handleClick(this.props, house.url);
+            const url = getTargetPath(house.url);
+            this.props.history.push(url);
           }}>
           {house.name}
         </div>
@@ -37,6 +38,7 @@ class CharacterCard extends React.PureComponent<Props, {}> {
         background = css.female;
         break;
       default:
+        console.log(`holy shit, no gender for ${this.props.name}`)
         background = "";
     }
     return background;

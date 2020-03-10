@@ -8,7 +8,7 @@ import css from "../style/list.module.scss";
 import { RouteComponentProps } from "react-router";
 import { Button } from "../NavButton";
 
-interface Props extends DispatchableProps {
+interface Props extends DispatchableProps, RouteComponentProps {
   houses: House[];
 }
 
@@ -23,7 +23,7 @@ export default class HousePage extends DataLoader<Props> {
   }
 
   goHome = () => {
-    ClickHandler.goHomeClick((this.props as any) as RouteComponentProps);
+    this.props.history.push("/");
   };
 
   render() {

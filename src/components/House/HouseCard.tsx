@@ -2,7 +2,7 @@ import * as React from "react";
 import { House } from "./Model";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Char } from "../Characters/Model";
-import ClickHandler from "../../util/ClickHandler";
+import {getTargetPath} from "../../util/ClickHandler";
 import css from "../style/house.module.scss";
 
 export type Props = House & {
@@ -18,13 +18,14 @@ class HouseCard extends React.PureComponent<Props, {}> {
         if(char.url === lordOne) return " (and still current Lord)";
 
         if (!lordOne) lordOne = char.url;
-        
+
         return (
           <div
             key={`${this.props.name}-lords-${index}`}
             className={`${css.link} ${char.url === this.props.founder ? css.founder : css.current}`}
             onClick={() => {
-              ClickHandler.handleClick(this.props, char.url);
+              const url = getTargetPath(char.url);
+              this.props.history.push(url);
             }}>
             {char.name}
           </div>
