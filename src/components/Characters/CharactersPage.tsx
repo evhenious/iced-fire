@@ -6,8 +6,8 @@ import css from "../style/list.module.scss";
 import SecondaryDataProvider from "../../containers/SecondaryDataProviderConnected";
 import * as config from "../../util/config.json";
 import { RouteComponentProps } from "react-router";
-import ClickHandler from "../../util/ClickHandler";
 import { Params } from "../../util/WebRequest";
+import { Button } from "../NavButton";
 
 interface Props extends DispatchableProps {
   characters: Char[];
@@ -105,18 +105,12 @@ export default class CharactersPage extends DataLoader<Props> {
     }
 
     const gridType = chars.length > 1 ? css.list : css.listSingle;
+    const onClick = !this.entityID ? this.loadMore : this.goHome;
+    const title = !this.entityID ? 'Load moar' : 'Home';
     return (
       <div>
         <div className={gridType}>{chars}</div>
-        {!this.entityID ? (
-          <div className={css.btn}>
-            <input type="button" value="Load Moar" onClick={this.loadMore} />
-          </div>
-        ) : (
-          <div className={css.btn}>
-            <input type="button" value="Home" onClick={this.goHome} />
-          </div>
-        )}
+        <Button title={title} onClick={onClick} />
       </div>
     );
   }

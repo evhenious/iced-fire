@@ -6,7 +6,7 @@ import * as config from "../../util/config.json";
 import DataLoader, { DispatchableProps } from "../../util/DataLoader";
 import css from "../style/list.module.scss";
 import { RouteComponentProps } from "react-router";
-import ClickHandler from "../../util/ClickHandler";
+import { Button } from "../NavButton";
 
 interface Props extends DispatchableProps {
   houses: House[];
@@ -43,9 +43,7 @@ export default class HousePage extends DataLoader<Props> {
             <HouseCard {...house} />
           </SecondaryDataProvider>
         </div>
-        <div className={css.btn}>
-          <input type="button" value="Home" onClick={this.goHome} />
-        </div>
+        <Button title='Home' onClick={this.goHome} />
       </div>
     );
   }
