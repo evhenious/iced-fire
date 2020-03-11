@@ -9,6 +9,7 @@ import { RouteComponentProps } from "react-router";
 import { Button } from "./NavButton";
 import HouseCard from "./House/HouseCard";
 import { House } from "./House/Model";
+import { WithUrl } from "./Interfaces";
 
 interface Props extends DispatchableProps, RouteComponentProps {
   secondary: string;
@@ -31,7 +32,7 @@ export default class SingleEntityPage extends DataLoader<Props> {
   componentDidMount() {
     const fullPath = `${urlBase}${this.entityPath}`;
 
-    const entities: {url: string}[] = (this.props as any)[this.urlSegment];
+    const entities: WithUrl[] = (this.props as any)[this.urlSegment];
     const entity = entities.find(item => item.url.includes(this.entityPath));
 
     !entity && this.doAskForDataSingle(this.urlSegment, fullPath);
@@ -42,7 +43,7 @@ export default class SingleEntityPage extends DataLoader<Props> {
   };
 
   render() {
-    const entities: {url: string}[] = (this.props as any)[this.urlSegment];
+    const entities: WithUrl[] = (this.props as any)[this.urlSegment];
     let entity;
     try {
       entity = entities.find(item => item.url.includes(this.entityPath));

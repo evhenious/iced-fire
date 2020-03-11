@@ -2,8 +2,8 @@ import * as React from "react";
 import WebRequest, { Params } from "./WebRequest";
 
 export interface DispatchableProps {
-  doFetchDataPage(segment: string, params: Params): void;
-  doReceiveDataPage(data: any): void;
+  doFetchDataPage?(segment: string, params: Params): void;
+  doReceiveDataPage?(data: any): void;
   doReceiveEntityData(data: any, segment: string): void;
 }
 
@@ -12,6 +12,11 @@ export default abstract class DataLoader<P extends DispatchableProps> extends Re
 
   protected doAskForDataPage(segment: string, params: Params) {
     const { doFetchDataPage, doReceiveDataPage } = this.props;
+
+    if(!doFetchDataPage || !doReceiveDataPage) {
+      console.log('doFetch and/or doReceive data page methods are not provided');
+      return;
+    }
 
     doFetchDataPage(segment, params);
 
@@ -31,9 +36,9 @@ export default abstract class DataLoader<P extends DispatchableProps> extends Re
     this.fetchData(segment, id, ({} as any)).then((data: any) => {
       doReceiveEntityData(data, segment);
     }).catch(() => {
-        console.log('no such entity found');
+      console.log('no such entity found');
     }).finally(() => {
-        this.fetchingUrls.delete(entityURL);
+      this.fetchingUrls.delete(entityURL);
     })
   }
 

@@ -1,13 +1,10 @@
 import * as React from "react";
 import DataLoader, { DispatchableProps } from "../util/DataLoader";
+import { WithUrl } from "../components/Interfaces";
 
 interface Props extends DispatchableProps {
   segment: string;
   requiredUrls: string[];
-}
-
-interface WithUrl {
-  url: string;
 }
 
 export default class SecondaryDataProvider extends DataLoader<Props> {
@@ -20,7 +17,7 @@ export default class SecondaryDataProvider extends DataLoader<Props> {
 
     if (requiredUrls.length > 0) {
       requiredUrls.forEach(url => {
-        const urlPart = url.split(".com/api")[1]; 
+        const urlPart = url.split(".com/api")[1];
 
         const entity = secondaryEntities.find(entity => entity.url.includes(urlPart));
         entity ? requiredEntities.push(entity) : url.length > 0 && this.fetchSingleEntity(url);
@@ -31,21 +28,23 @@ export default class SecondaryDataProvider extends DataLoader<Props> {
   };
 
   render() {
-    const child = React.Children.toArray(this.props.children);
-    if (child.length === 0) {
+    const { children, requiredUrls, segment } = this.props;
+
+    const childs = React.Children.toArray(children);
+    if (childs.length === 0) {
       console.warn("no childs found");
       return null;
     }
 
-    if (child.length > 1) {
+    if (childs.length > 1) {
       console.warn("only single child expected");
       return null;
     }
 
-    const data = this.prepareRequiredData(this.props.requiredUrls, (this.props as any)[this.props.segment]);
-    const props = { [this.props.segment]: data };
+    const data = this.prepareRequiredData(requiredUrls, (this.props as any)[segment]);
+    const props = { [segment]: data };
 
-    return React.Children.map(this.props.children, (child: any) => {
+    return React.Children.map(children, (child: any) => {
       return React.cloneElement(child, { ...props });
     });
   }

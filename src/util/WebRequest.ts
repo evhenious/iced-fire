@@ -6,18 +6,14 @@ export interface Params {
   pageSize: number;
 }
 
+const requestHeaders = {
+  ContentType: "application/json",
+  Accept: "application/json; text/javascript"
+};
+
 export default class WebRequest {
-  
+
   public static makeRequest(urlSegment: string, pathParams: string, queryParam: Params) {
-    
-    const ContentType = "application/json";
-    const Accept = "application/json; text/javascript";
-
-    const requestHeaders = {
-      ContentType,
-      Accept
-    };
-
     const query = WebRequest.getParams(queryParam);
     const url = `${config.urlBase}/${urlSegment}${pathParams}${query}`;
 
