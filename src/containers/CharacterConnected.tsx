@@ -1,18 +1,18 @@
 import { connect } from "react-redux";
-import { State } from "../store/reducer";
 import SingleEntityPage from "../components/SingleEntityPage";
-import { doReceiveEntityData } from "../store/Actions";
+import { doReceiveEntityData} from "../store/Actions";
+import { State } from "../store/reducer";
 
 const mapDispatchToProps = {
   doReceiveEntityData
 };
 
 const mapStateToProps = (state: State) => {
-  const { houses } = state;
+  const { characters } = state;
 
   return {
-    houses,
-    secondary: 'characters'
+    characters,
+    secondary: 'houses'
   };
 };
 
