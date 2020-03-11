@@ -27,11 +27,14 @@ export default abstract class DataLoader<P extends DispatchableProps> extends Re
 
     this.fetchingUrls.add(entityURL);
     const id = entityURL.split(segment)[1];
-    
+
     this.fetchData(segment, id, ({} as any)).then((data: any) => {
       doReceiveEntityData(data, segment);
-      this.fetchingUrls.delete(entityURL);
-    });
+    }).catch(() => {
+        console.log('no such entity found');
+    }).finally(() => {
+        this.fetchingUrls.delete(entityURL);
+    })
   }
 
   private fetchData(segment: string, urlPart: string, params: Params) {
@@ -39,7 +42,7 @@ export default abstract class DataLoader<P extends DispatchableProps> extends Re
       .then((resp: Response) => resp.json())
 
       .catch((err: Error) => {
-        console.error(`Invalid fetch from ${segment}${urlPart} - ${err}`);
+        console.error(`Invalid fetch from ${segment}${urlPart} - ${err.message}`);
       });
   }
 }
