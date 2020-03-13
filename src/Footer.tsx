@@ -19,9 +19,9 @@ const items = [
 const Footer: React.FC = () => {
   return (
     <div className={css.hints}>
-      {items.map((item) => {
+      {items.map((item, index) => {
         return (
-          <div className={css.hint}>
+          <div className={css.hint} key={`${index}-${item.title}`}>
             <div id='colorBox' className={item.className} />
             {item.title}
           </div>
