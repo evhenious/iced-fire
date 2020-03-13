@@ -42,6 +42,7 @@ function receiveEntity(state: State, action: ReceiveEntityData) {
   };
 }
 
+// TODO remove as not required or reuse to show a loader-spinner or whatever
 function startFetch(state: State) {
   return {
     ...state,
