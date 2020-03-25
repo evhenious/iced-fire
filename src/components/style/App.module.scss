@@ -1,8 +1,8 @@
-$maleColor: darkturquoise;
-$femaleColor: cornsilk;
-$houseColor: coral;
+$maleColor: cornsilk;
+$femaleColor: #dce3ff;
+$houseColor: #ffdce3;
 $dark: #282c34;
-$border: #818690;
+$border: #807e79;
 
 .body {
   min-width: 720px;
@@ -41,7 +41,7 @@ $border: #818690;
 }
 
 @mixin colorBox($color) {
-  width: 10px;
+  width: 30px;
   height: 10px;
   margin-right: 5px;
 

@@ -3,15 +3,15 @@ import css from './components/style/App.module.scss';
 
 const items = [
   {
-    title: 'darkturquoise card - male',
+    title: 'male',
     className: css.colorBoxMale
   },
   {
-    title: 'cornsilk card - female',
+    title: 'female',
     className: css.colorBoxFemale
   },
   {
-    title: 'coral card - house',
+    title: 'house',
     className: css.colorBoxHouse
   }
 ];
