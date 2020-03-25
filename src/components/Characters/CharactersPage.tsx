@@ -8,6 +8,7 @@ import * as config from "../../util/config.json";
 import { RouteComponentProps } from "react-router";
 import { Params } from "../../util/WebRequest";
 import { Button } from "../NavButton";
+import Loader from "../Loader";
 
 interface Props extends DispatchableProps, RouteComponentProps {
   characters: Char[];
@@ -73,7 +74,7 @@ export default class CharactersPage extends DataLoader<Props> {
     let chars: any = [];
 
     const { init } = this.props;
-    if (init && this.params.page === 1) return "please wait. init...";
+    if (init && this.params.page === 1) return <Loader />;
 
     chars = this.prepareEntityCards();
 

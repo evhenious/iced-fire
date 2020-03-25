@@ -10,6 +10,7 @@ import { Button } from "./NavButton";
 import HouseCard from "./House/HouseCard";
 import { House } from "./House/Model";
 import { WithUrl } from "./Interfaces";
+import Loader from "./Loader";
 
 interface Props extends DispatchableProps, RouteComponentProps {
   secondary: string;
@@ -51,9 +52,7 @@ export default class SingleEntityPage extends DataLoader<Props> {
       this.props.history.replace('/error');
     }
 
-    if (!entity) {
-      return <div>Please wait a little...</div>;
-    }
+    if (!entity) return <Loader />;
 
     let Card;
     let requiredUrls;
