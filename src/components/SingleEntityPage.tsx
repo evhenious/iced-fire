@@ -65,7 +65,7 @@ export default class SingleEntityPage extends DataLoader<Props> {
       requiredUrls = [(entity as House).founder, (entity as House).currentLord];
     }
 
-    const title = 'Home';
+    const title = '<-- Home';
     return (
       <div>
         <div className={css.listSingle}>

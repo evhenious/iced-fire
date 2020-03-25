@@ -79,7 +79,7 @@ export default class CharactersPage extends DataLoader<Props> {
 
     const gridType = css.list;
     const onClick = this.loadMore;
-    const title = 'Load moar';
+    const title = 'Load moar -->';
 
     return (
       <div>

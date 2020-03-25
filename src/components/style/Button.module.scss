@@ -1,0 +1,20 @@
+@import "./App.module.scss";
+
+.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn {
+  width: 30vw;
+  min-width: 100px;
+  border-radius: 4px;
+  border: 1px solid $border;
+  height: 30px;
+  margin-bottom: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

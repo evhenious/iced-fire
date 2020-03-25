@@ -17,6 +17,13 @@
   min-width: 500px;
 }
 
+@media screen and (min-width: 1200px) {
+  .list {
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80%;
+  }
+}
+
 .listSingle {
   @extend %listGeneral;
   grid-template-columns: 1fr;

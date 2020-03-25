@@ -1,20 +1,15 @@
 import React from 'react';
-
-const style = {
-    position: 'fixed' as const,
-    top: '3px',
-    left: '3px'
-  }
+import css from "./style/Button.module.scss";
 
 interface Props {
-    title: string;
-    onClick(): any;
+  title: string;
+  onClick(): any;
 }
 
 export const Button: React.FC<Props> = (props) => {
   return (
-    <div style={style}>
-      <input type='button' value={props.title} onClick={props.onClick} />
+    <div className={css.parent}>
+      <input className={css.btn} type='button' value={props.title} onClick={props.onClick} />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 $maleColor: darkturquoise;
 $femaleColor: cornsilk;
 $houseColor: coral;
+$dark: #282c34;
+$border: #818690;
 
 .body {
   min-width: 720px;
@@ -9,7 +11,7 @@ $houseColor: coral;
 }
 
 %bars {
-  background-color: #282c34;
+  background-color: $dark;
   min-width: 700px;
   display: flex;
   color: white;
@@ -63,8 +65,12 @@ $houseColor: coral;
   text-decoration: underline;
 }
 
-.container {
-  border: 1px solid black;
+%genericContainer {
+  border: 2px solid $border;
   border-radius: 4px;
   padding: 5px;
+}
+
+.container {
+  @extend %genericContainer;
 }
