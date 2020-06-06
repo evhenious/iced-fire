@@ -13,9 +13,9 @@ import Footer from './Footer';
 class App extends React.Component {
   render() {
     return [
-      <div className={css.header}>Song of Ice and Fire: characters and houses info</div>,
+      <div key='header' className={css.header}>Song of Ice and Fire: characters and houses info</div>,
 
-      <div className={css.body}>
+      <div key='body' className={css.body}>
         <Switch>
           <Route exact path={'/'} render={() => <Redirect to={'/characters'} />} />
           <Route exact path={'/characters'} component={CharactersConnected} />
@@ -26,7 +26,7 @@ class App extends React.Component {
         </Switch>
       </div>,
 
-      <Footer />,
+      <Footer key='footer' />,
     ];
   }
 }

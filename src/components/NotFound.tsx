@@ -12,7 +12,7 @@ const NotFound: React.FC = () => {
 
   return (
     <div className={css.errorPage}>
-      <img src={process.env.PUBLIC_URL + '/logo.png'} />
+      <img src={process.env.PUBLIC_URL + '/logo.png'} alt='The Logo' />
       <div>Unexpected happens. Consider pressing this:</div>
       <Button title='Home Page' onClick={doClick} />
     </div>
