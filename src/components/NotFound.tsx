@@ -1,22 +1,20 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-
-const style = {
-  padding: '10px',
-  textAlign: 'center' as const,
-  color: 'coral',
-  width: '30vw',
-  transform: 'translate(-50%, -50%)',
-  position: 'absolute' as const,
-  left: '50%',
-  top: '30%'
-};
+import {useHistory} from 'react-router-dom';
+import css from '../components/style/NotFound.module.scss'
+import { Button } from './NavButton';
 
 const NotFound: React.FC = () => {
+  const history = useHistory();
+
+  const doClick = () => {
+    history.push('/')
+  }
+
   return (
-    <div style={style}>
-      <div>Invalid address. Try this link instead:</div>
-      <Link to={'/'}>Home page - Characters list</Link>
+    <div className={css.errorPage}>
+      <img src={process.env.PUBLIC_URL + '/logo.png'} alt='The Logo' />
+      <div>Unexpected happens. Consider pressing this:</div>
+      <Button title='Home Page' onClick={doClick} />
     </div>
   );
 };
