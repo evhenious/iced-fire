@@ -40,7 +40,7 @@ export default class SingleEntityPage extends DataLoader<Props> {
   }
 
   goHome = () => {
-
+    this.props.history.push("/");
   };
 
   render() {
