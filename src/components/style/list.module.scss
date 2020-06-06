@@ -8,13 +8,18 @@
   margin-right: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 60%;
+  width: 95%;
+  grid-template-columns: 1fr;
 }
 
 .list {
   @extend %listGeneral;
-  grid-template-columns: 1fr 1fr;
-  min-width: 500px;
+
+  @media screen and (min-width: 720px) {
+    grid-template-columns: 1fr 1fr;
+    min-width: 500px;
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -26,6 +31,8 @@
 
 .listSingle {
   @extend %listGeneral;
-  grid-template-columns: 1fr;
-  min-width: 600px;
+
+  @media screen and (min-width: 720px) {
+    min-width: 600px;
+  }
 }
