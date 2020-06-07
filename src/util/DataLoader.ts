@@ -36,7 +36,7 @@ export default abstract class DataLoader<P extends DispatchableProps> extends Re
     this.fetchData(segment, id, ({} as any)).then((data: any) => {
       doReceiveEntityData(data, segment);
     }).catch(() => {
-      console.log('no such entity found');
+      console.error('no such entity found');
     }).finally(() => {
       this.fetchingUrls.delete(entityURL);
     })
@@ -48,6 +48,7 @@ export default abstract class DataLoader<P extends DispatchableProps> extends Re
 
       .catch((err: Error) => {
         console.error(`Invalid fetch from ${segment}${urlPart} - ${err.message}`);
+        return [];
       });
   }
 }

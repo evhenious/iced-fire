@@ -11,6 +11,7 @@ import HouseCard from "./House/HouseCard";
 import { House } from "./House/Model";
 import { WithUrl } from "./Interfaces";
 import Loader from "./Loader";
+import { goHome } from "../util/ClickHandler";
 
 interface Props extends DispatchableProps, RouteComponentProps {
   secondary: string;
@@ -38,10 +39,6 @@ export default class SingleEntityPage extends DataLoader<Props> {
 
     !entity && this.doAskForDataSingle(this.urlSegment, fullPath);
   }
-
-  goHome = () => {
-    this.props.history.push("/");
-  };
 
   render() {
     const entities: WithUrl[] = (this.props as any)[this.urlSegment];
@@ -72,7 +69,7 @@ export default class SingleEntityPage extends DataLoader<Props> {
             <Card {...(entity as any)} />
           </SecondaryDataProvider>
         </div>
-        <Button title={title} onClick={this.goHome} />
+        <Button title={title} onClick={goHome.bind(null, this.props.history)} />
       </div>
     );
   }

@@ -13,7 +13,7 @@ export const initialState: State = {
   characters: [],
   houses: [],
   pages: [],
-  init: false
+  init: true
 };
 
 export function reducer(state: State = initialState, action: Action) {

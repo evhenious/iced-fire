@@ -5,7 +5,7 @@ import CharacterCard from "./CharacterCard";
 import css from "../style/list.module.scss";
 import SecondaryDataProvider from "../../containers/SecondaryDataProviderConnected";
 import * as config from "../../util/config.json";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, Redirect } from "react-router";
 import { Params } from "../../util/WebRequest";
 import { Button } from "../NavButton";
 import Loader from "../Loader";
@@ -36,7 +36,9 @@ export default class CharactersPage extends DataLoader<Props> {
   componentDidMount() {
     const { characters } = this.props;
 
-    characters.length <= 1 && this.doAskForDataPage(this.urlSegment, this.params);
+    if (characters.length <= 1) {
+      this.doAskForDataPage(this.urlSegment, this.params);
+    }
   }
 
   prepareEntityCards = () => {
@@ -66,10 +68,6 @@ export default class CharactersPage extends DataLoader<Props> {
     this.doAskForDataPage(this.urlSegment, this.params);
   };
 
-  goHome = () => {
-    this.props.history.push("/");
-  };
-
   render() {
     let chars: any = [];
 
@@ -77,6 +75,7 @@ export default class CharactersPage extends DataLoader<Props> {
     if (init && this.params.page === 1) return <Loader />;
 
     chars = this.prepareEntityCards();
+    if (chars.length === 0) return <Redirect to='/error' />;
 
     const gridType = css.list;
     const onClick = this.loadMore;
