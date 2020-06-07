@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
       {items.map((item, index) => {
         return (
           <div className={css.hint} key={`${index}-${item.title}`}>
-            <div id='colorBox' className={item.className} />
+            <div id={`colorBox-${index}`} className={item.className} />
             {item.title}
           </div>
         );

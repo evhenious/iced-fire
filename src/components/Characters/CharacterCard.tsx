@@ -53,12 +53,12 @@ class CharacterCard extends React.PureComponent<Props, {}> {
       titlesFound = false;
     }
 
-    return (
+    return ([
+      header,
       <ul className={css.titles}>
-        {header}
         {titlesFound && titles.map((title, index) => <li key={`${this.props.name}-titles-${index}`}>{title}</li>)}
       </ul>
-    );
+    ]);
   };
 
   render() {
